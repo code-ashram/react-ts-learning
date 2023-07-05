@@ -1,6 +1,6 @@
-import CostDate from "../CostDate/CostDate.jsx";
+import CostDate from "../CostDate/CostDate.tsx";
 import {FC} from "react";
-import Card from "../Card/Card.tsx";
+import Card from "../../Card/Card.tsx";
 import './CostItem.css'
 
 type Props = {

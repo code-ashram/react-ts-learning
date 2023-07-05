@@ -1,13 +1,18 @@
-import data from "./data.tsx"
+import data, {Item} from "./data.tsx"
 import Costs from "./components/Costs/Costs.jsx";
+import NewCost from "./components/NewCost/NewCost.tsx";
 
 function App() {
 
+    const handleAddCost = (cost: Item): Item => {
+        console.log(cost)
+    }
+
     return (
-        <>
-            <h1>Список расходов</h1>
+        <div>
+            <NewCost onAddCost={handleAddCost}/>
             <Costs source={data}/>
-        </>
+        </div>
     )
 }
 
