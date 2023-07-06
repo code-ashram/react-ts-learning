@@ -1,20 +1,19 @@
-import './CostForm.css'
 import {ChangeEvent, FC, FormEvent, useState} from "react";
 import {Item} from "../../../data.tsx";
-
-const today = (new Date()).toISOString().slice(0, 10)
+import {today} from "../../../utils.ts";
+import './CostForm.css'
 
 type Props = {
-    onSaveCostData: (costData: Item) => Item
+    onSaveCostData: (costData: Item) => void
 }
 
 const CostForm: FC<Props> = ({onSaveCostData}) => {
     const [name, setName] = useState<string>('')
-    const [amount, setAmount] = useState<string>("0.01")
+    const [amount, setAmount] = useState<number>(0.01)
     const [date, setDate] = useState<string>(today)
 
     const handleNameChange = (e: ChangeEvent<HTMLInputElement>) => setName(e.target.value)
-    const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => setAmount(e.target.value)
+    const handleAmountChange = (e: ChangeEvent<HTMLInputElement>) => setAmount(Number(e.target.value))
     const handleDateChange = (e: ChangeEvent<HTMLInputElement>) => setDate(e.target.value)
 
     const handleSubmitForm = (e: FormEvent) => {
@@ -23,14 +22,14 @@ const CostForm: FC<Props> = ({onSaveCostData}) => {
         const costData: Item = {
             id: crypto.randomUUID(),
             description: name,
-            amount: amount,
+            amount: Number(amount),
             date: new Date(date)
         }
 
         onSaveCostData(costData)
 
         setName('')
-        setAmount("0.01")
+        setAmount(0.01)
         setDate(today)
     }
 

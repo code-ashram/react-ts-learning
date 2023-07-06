@@ -1,14 +1,14 @@
-import CostForm from "./CostForm/CostForm.tsx";
-import "./NewCost.css"
-import {Item} from "../../data.tsx";
 import {FC} from "react";
+import CostForm from "./CostForm/CostForm.tsx";
+import {Item} from "../../data.tsx";
+import "./NewCost.css"
 
 type Props = {
-    onAddCost: (costData: Item) => Item
+    onAddCost: (costData: Item) => void
 }
 
 const NewCost: FC<Props> = ({onAddCost}) => {
-    const handleSaveCostData = (inputCostData: Item): Item => onAddCost({ ...inputCostData})
+    const handleSaveCostData = (inputCostData: Item): void => onAddCost(inputCostData)
 
     return (
         <div className="new-cost">
