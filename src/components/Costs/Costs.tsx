@@ -12,13 +12,13 @@ type Props = {
 }
 
 const Costs: FC<Props> = ({source}) => {
-    const [selectedYear, setSelectedYear] = useState(currentYear)
+    const [selectedYear, setSelectedYear] = useState<string>(currentYear)
 
-    const handleChangeYear = (year: number) => {
+    const filteredList = source.filter((item) => item.date.getFullYear().toString() === selectedYear)
+
+    const handleChangeYear = (year: string) => {
         setSelectedYear(year)
     }
-
-    const filteredList = source.filter((item) => item.date.getFullYear() === selectedYear)
 
     const showCostsList = (array: Item[]) => array.map((item) => <CostItem
         key={item.id}
@@ -29,7 +29,7 @@ const Costs: FC<Props> = ({source}) => {
     return (
         <Card className="costs">
             <CostsFilter year={selectedYear} onChangeYear={handleChangeYear}/>
-            {showCostsList(selectedYear ? filteredList : source)}
+            {showCostsList(selectedYear === "Все расходы" ? source : filteredList)}
         </Card>
     )
 }

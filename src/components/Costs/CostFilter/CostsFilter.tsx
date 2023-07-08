@@ -2,12 +2,12 @@ import "./CostsFilter.css";
 import {ChangeEvent, FC} from "react";
 
 type Props = {
-    year: number,
-    onChangeYear: (value: number) => void
+    year: string,
+    onChangeYear: (value: string) => void
 }
 
 const CostsFilter: FC<Props> = ({year, onChangeYear}) => {
-    const yearChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => onChangeYear(Number(e.target.value))
+    const yearChangeHandler = (e: ChangeEvent<HTMLSelectElement>) => onChangeYear(e.target.value)
 
     return (
         <div className="costs-filter">
