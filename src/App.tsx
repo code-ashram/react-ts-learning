@@ -10,7 +10,7 @@ function App() {
         setCosts(prevCosts => [cost, ...prevCosts])
 
     const handleFilterList = (year: number | undefined) =>
-        setCosts( year ? costs.filter((item) => item.date.getFullYear() === year) : data)
+        setCosts( year ? data.filter((item) => item.date.getFullYear() === year) : data)
 
     return (
         <div>

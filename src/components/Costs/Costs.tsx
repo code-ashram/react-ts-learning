@@ -13,7 +13,7 @@ type Props = {
 }
 
 const Costs: FC<Props> = ({source, onSelectYear }) => {
-    const [selectedYear, setSelectedYear] = useState<number | undefined>(currentYear)
+    const [selectedYear, setSelectedYear] = useState<number | undefined>(undefined)
 
     const handleChangeYear = (chosenYear: number | undefined):void => {
         onSelectYear(chosenYear)
