@@ -11,7 +11,6 @@ const CostsFilter: FC<Props> = ({year, onChangeYear}) => {
         onChangeYear(e.target.value === 'All' ? undefined : Number(e.target.value))
     }
 
-
     return (
         <div className="costs-filter">
             <div className="costs-filter__control">

@@ -1,4 +1,4 @@
-import {FC, useEffect, useState} from "react";
+import {FC, useState} from "react";
 import CostItem from "./CostItem/CostItem.jsx";
 import {Item} from "../../data.tsx";
 import Card from "../Card/Card.tsx";
@@ -9,29 +9,22 @@ import "./Costs.css"
 
 type Props = {
     source: Item[]
+    onSelectYear: (year: number | undefined) => void
 }
 
-const getCurrentYearCosts = (array: Item[], year: number) => array.filter((item) => item.date.getFullYear() === year)
-
-const Costs: FC<Props> = ({source}) => {
+const Costs: FC<Props> = ({source, onSelectYear }) => {
     const [selectedYear, setSelectedYear] = useState<number | undefined>(currentYear)
-    const [costsList, setCostsList] = useState<Item[]>(getCurrentYearCosts(source, currentYear))
-    useEffect(() => {
-        console.table(costsList)
-    }, [costsList])
 
-    const handleChangeYear = (year: number | undefined):void => {
-        setSelectedYear(year)
-        setCostsList(year ? source.filter((item) => item.date.getFullYear() === year) : source)
+    const handleChangeYear = (chosenYear: number | undefined):void => {
+        onSelectYear(chosenYear)
+        setSelectedYear(chosenYear)
     }
-
-    // const filteredList = source.filter((item) => item.date.getFullYear() === selectedYear)
 
     return (
         <Card className="costs">
             <CostsFilter year={selectedYear} onChangeYear={handleChangeYear}/>
-            {costsList.length
-                ? costsList.map((item) => <CostItem
+            {source.length
+                ? source.map((item) => <CostItem
                     key={item.id}
                     date={item.date}
                     description={item.description}
