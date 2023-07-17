@@ -1,14 +1,17 @@
-import {useState} from "react";
 import data, {Item} from "./data.tsx"
 import Costs from "./components/Costs/Costs.jsx";
 import NewCost from "./components/NewCost/NewCost.tsx";
+import {useState} from "react";
 
 function App() {
     const [costs, setCosts] = useState<Item[]>(data)
     const [filteredCosts, setFilteredCosts] = useState(costs)
 
-    const handleAddCost = (cost: Item) =>
+    const handleAddCost = (cost: Item) => {
         setCosts(prevCosts => [cost, ...prevCosts])
+        setFilteredCosts(prevCosts => [cost, ...prevCosts])
+    }
+
 
     const handleFilterList = (year: number | undefined) =>
         setFilteredCosts( year ? costs.filter((item) => item.date.getFullYear() === year) : costs)
