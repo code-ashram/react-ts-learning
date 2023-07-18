@@ -3,6 +3,7 @@ import {Item} from "../../data.tsx";
 import Card from "../Card/Card.tsx";
 import CostsFilter from "./CostFilter/CostsFilter.tsx";
 import CostList from "./CostList";
+import CostsDiagram from "./CostsDiagram/CostsDiagram.tsx";
 
 import "./Costs.css"
 
@@ -22,6 +23,7 @@ const Costs: FC<Props> = ({source, onSelectYear}) => {
     return (
         <Card className="costs">
             <CostsFilter year={selectedYear} onChangeYear={handleChangeYear}/>
+            <CostsDiagram costs={source}/>
             <CostList source={source}/>
         </Card>
     )
