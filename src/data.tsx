@@ -30,6 +30,18 @@ const data: Item[] = [
         description: 'Xiaomi 12 Lite',
         amount: 700.14,
     },
+    {
+        id: "5",
+        date: new Date(2023, 1, 13),
+        description: 'Корвалол',
+        amount: 20.00,
+    },
+    {
+        id: "6",
+        date: new Date(2023, 4, 13),
+        description: 'Валерьянка',
+        amount: 200.00,
+    },
 ]
 
 export default data
