@@ -9,17 +9,21 @@ type Props = {
   dataSets: DataSet[]
 }
 
-const Diagram: FC<Props> = ({ dataSets }) => (
-  <div className="diagram">
-    {dataSets.map(({ value, label }) => (
-      <DiagramBar
-        key={label}
-        value={value}
-        maxValue={Math.max(...dataSets.map(({ value }) => value))}
-        label={label}
-      />
-    ))}
-  </div>
-)
+const Diagram: FC<Props> = ({ dataSets }) => {
+  const maxValue = Math.max(...dataSets.map(({ value }) => value))
+
+  return (
+    <div className="diagram">
+      {dataSets.map(({ value, label }) => (
+        <DiagramBar
+          key={label}
+          value={value}
+          maxValue={maxValue}
+          label={label}
+        />
+      ))}
+    </div>
+  )
+}
 
 export default Diagram
