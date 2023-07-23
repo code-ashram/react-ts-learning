@@ -1,28 +1,25 @@
-import {FC} from "react";
-import DiagramBar from "./DiagramBar/DiagramBar.tsx";
+import { FC } from 'react'
+
+import DiagramBar from './parts/DiagramBar.tsx'
+import { DataSet } from '../../models/DataSet.ts'
 
 import './Diagram.css'
 
-export type DataSet = {
-    value: number,
-    label: string,
-}
-
 type Props = {
-    dataSets: Array<DataSet>
+  dataSets: DataSet[]
 }
 
-const Diagram: FC<Props> = ({dataSets}) => {
-    const dataSetsValue = dataSets.map(({value}) => value)
-    const maxMonthCosts = Math.max(...dataSetsValue)
-
-    return <div className="diagram">
-        {dataSets.map(({value, label}) => <DiagramBar
-            key={label}
-            value={value}
-            maxValue={maxMonthCosts}
-            label={label}/>)}
-    </div>
-}
+const Diagram: FC<Props> = ({ dataSets }) => (
+  <div className="diagram">
+    {dataSets.map(({ value, label }) => (
+      <DiagramBar
+        key={label}
+        value={value}
+        maxValue={Math.max(...dataSets.map(({ value }) => value))}
+        label={label}
+      />
+    ))}
+  </div>
+)
 
 export default Diagram
